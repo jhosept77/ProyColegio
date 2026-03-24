@@ -12,7 +12,8 @@ public class Programa
         Console.WriteLine("1. Agregar estudiante");
         Console.WriteLine("2. Mostrar Todos los estudiantes");
         Console.WriteLine("3. Buscar Estudinate por ID");
-        Console.WriteLine("4. Salir");
+        Console.WriteLine("4. Eliminar estudiante");
+        Console.WriteLine("5. Salir");
         Console.Write("Seleccione una opción: ");
 
         String opcion = Console.ReadLine();
@@ -36,8 +37,14 @@ public class Programa
                 Console.WriteLine($"El estudiante {IdaBuscar} es:");
                 Colegio.BuscarPorId(IdaBuscar);
                 break;
-
+                
                 case "4":
+                Console.WriteLine("Ingrese ID de alumno a eliminar");
+                int IdEliminar = int.Parse(Console.ReadLine() ?? "0");
+                Colegio.EliminarAlumno(IdEliminar);
+                break;
+
+                case "5":
                 Continuar = false;
                 Console.WriteLine("Saliendo del programa");
                 break;

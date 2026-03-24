@@ -29,10 +29,7 @@ public class ServicioEstudiante
         Console.WriteLine("Ingrese Correo del estudiante");
         string correo = Console.ReadLine();
 
-        Console.WriteLine("Asigne ID de estudiante");
-        int id = int.Parse(Console.ReadLine());
-
-        return new Estudiante(nombre,apellido,direccion,celular,correo,id);
+        return new Estudiante(nombre,apellido,direccion,celular,correo,0);
     }
 
 

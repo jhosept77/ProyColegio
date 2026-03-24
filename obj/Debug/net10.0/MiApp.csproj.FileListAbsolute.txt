@@ -12,3 +12,4 @@ C:\Users\torre\Documents\elproyect\MiApp\obj\Debug\net10.0\refint\MiApp.dll
 C:\Users\torre\Documents\elproyect\MiApp\obj\Debug\net10.0\MiApp.pdb
 C:\Users\torre\Documents\elproyect\MiApp\obj\Debug\net10.0\MiApp.genruntimeconfig.cache
 C:\Users\torre\Documents\elproyect\MiApp\obj\Debug\net10.0\ref\MiApp.dll
+C:\Users\torre\Documents\elproyect\MiApp\obj\Debug\net10.0\MiApp.sourcelink.json

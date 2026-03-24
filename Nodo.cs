@@ -18,9 +18,14 @@ public class Nodo
 public class ListasEnlazadas
 {
     public Nodo Cabeza;
+    public int ContadorId = 1;
+
 
     public void Agregar(Estudiante alumno)
     {
+        alumno.Id = ContadorId;
+        ContadorId++;
+
         Nodo nuevoNodo = new Nodo(alumno);
 
         if(Cabeza == null)
@@ -75,6 +80,29 @@ public class ListasEnlazadas
   actual = actual.NoSiguiente;             
             }
         
+    }
+
+    public void EliminarAlumno(int IdAlumno)
+    {
+        if(Cabeza == null)return;
+
+        if(Cabeza.Dato.Id == IdAlumno)
+        {
+            Cabeza = Cabeza.NoSiguiente;
+            return;
+        }
+
+        Nodo actual = Cabeza;
+
+        while(actual.NoSiguiente != null)
+        {
+            if(actual.NoSiguiente.Dato.Id == IdAlumno)
+            {
+                actual.NoSiguiente = actual.NoSiguiente.NoSiguiente;
+                return;
+            }
+            actual = actual.NoSiguiente;
+        }
     }
     
 }
