@@ -16,7 +16,7 @@ public class Programa
         Console.WriteLine("5. Salir");
         Console.Write("Seleccione una opción: ");
 
-        String opcion = Console.ReadLine();
+        String opcion = Console.ReadLine() ??"";
             switch (opcion)
             {
                 case "1":
@@ -42,6 +42,7 @@ public class Programa
                 Console.WriteLine("Ingrese ID de alumno a eliminar");
                 int IdEliminar = int.Parse(Console.ReadLine() ?? "0");
                 Colegio.EliminarAlumno(IdEliminar);
+                Console.WriteLine($"----- Estudiante con Id {IdEliminar} eliminado correctamente ---- ");
                 break;
 
                 case "5":

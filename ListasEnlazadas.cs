@@ -1,23 +1,9 @@
 using System;
-using Microsoft.VisualBasic;
-
-public class Nodo
-{
-    public Estudiante Dato;
-    public Nodo NoSiguiente;
-
-
-    public Nodo(Estudiante dato)
-    {
-        Dato = dato;
-        NoSiguiente = null;
-    }
-}
-
+using System.Security.Cryptography.X509Certificates;
 
 public class ListasEnlazadas
 {
-    public Nodo Cabeza;
+    public Nodo? Cabeza;
     public int ContadorId = 1;
 
 
@@ -46,7 +32,7 @@ public class ListasEnlazadas
 
     public void MostrarLista()
     {
-        Nodo actual = Cabeza;
+        Nodo? actual = Cabeza;
         
         if(actual == null)
         {
@@ -67,7 +53,7 @@ public class ListasEnlazadas
 
     public void BuscarPorId(int IdBuscado)
     {
-        Nodo actual = Cabeza;
+        Nodo? actual = Cabeza;
         
             while (actual != null)
             {
@@ -106,3 +92,46 @@ public class ListasEnlazadas
     }
     
 }
+
+
+public class ListasEnlazadasMateria
+{
+    public NodoMateria? Cabeza;
+    
+
+    public ListasEnlazadasMateria()
+    {
+        Cabeza = null;
+    }
+
+
+    public void AgregarMateria(Materia asignatura)
+    {
+        NodoMateria NuevoNodoMateria = new NodoMateria(asignatura); 
+
+        NuevoNodoMateria.NodoSigiente = Cabeza;
+        Cabeza = NuevoNodoMateria;
+    }
+
+
+    public void ModificarNotaMateria(Materia asignatura, int nuevaNota)
+    {
+        NodoMateria? actual = Cabeza;
+        while( actual != null)
+        {
+            if(actual.Dato.Id == asignatura.Id)
+            {
+                actual.Dato.Nota = nuevaNota;
+                break;
+            }
+            actual = actual.NodoSigiente;
+        }
+
+        
+    }
+
+}
+
+
+
+
