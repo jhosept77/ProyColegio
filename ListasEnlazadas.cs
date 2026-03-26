@@ -130,6 +130,51 @@ public class ListasEnlazadasMateria
         
     }
 
+
+    public void EliminarMateria(Materia asignatura)
+    {
+        
+        NodoMateria? actual = Cabeza;
+        NodoMateria? anterior = null;
+        if(Cabeza?.Dato.Nombre == asignatura.Nombre)
+        {
+            Cabeza = Cabeza.NodoSigiente;
+            return;
+        }
+        while(actual != null)
+        {
+           
+            if(actual.Dato.Nombre == asignatura.Nombre)
+            {
+                 anterior?.NodoSigiente = actual.NodoSigiente;
+                 break;
+            }
+            anterior = actual;
+            actual = actual.NodoSigiente;
+        }
+    }
+
+
+    public void MOstrarMatrias()
+    {
+         NodoMateria? actual = Cabeza;
+        
+        if(actual == null)
+        {
+            Console.WriteLine("No hay Materias asignadas");
+            return;
+        }
+        
+        while(actual != null)
+        {
+            Console.WriteLine($"Nombre de asignatura : {actual.Dato.Nombre}  |  Nota actual de asignatura : {actual.Dato.Nota}");
+            actual = actual.NodoSigiente;
+
+        }
+
+        Console.WriteLine("-------------------------------------");
+    }
+
 }
 
 

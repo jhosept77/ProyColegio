@@ -13,7 +13,8 @@ public class Programa
         Console.WriteLine("2. Mostrar Todos los estudiantes");
         Console.WriteLine("3. Buscar Estudinate por ID");
         Console.WriteLine("4. Eliminar estudiante");
-        Console.WriteLine("5. Salir");
+        Console.WriteLine("5. Agregar materias a estudinate");
+        Console.WriteLine("6. Salir");
         Console.Write("Seleccione una opción: ");
 
         String opcion = Console.ReadLine() ??"";
@@ -45,7 +46,7 @@ public class Programa
                 Console.WriteLine($"----- Estudiante con Id {IdEliminar} eliminado correctamente ---- ");
                 break;
 
-                case "5":
+                case "6":
                 Continuar = false;
                 Console.WriteLine("Saliendo del programa");
                 break;
@@ -56,6 +57,10 @@ public class Programa
 
             }
        }
+
+
+       ListasEnlazadasMateria Rama = new ListasEnlazadasMateria();
+       bool Continuar = true;
 
     
     }
