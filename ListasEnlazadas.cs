@@ -4,13 +4,12 @@ using System.Security.Cryptography.X509Certificates;
 public class ListasEnlazadas
 {
     public Nodo? Cabeza;
-    public int ContadorId = 1;
+ 
 
 
     public void Agregar(Estudiante alumno)
     {
-        alumno.Id = ContadorId;
-        ContadorId++;
+       
 
         Nodo nuevoNodo = new Nodo(alumno);
 
@@ -126,11 +125,20 @@ public class ListasEnlazadasMateria
 
     public void AgregarMateria(Materia asignatura)
     {
-        
+        if (BuscarMateria(asignatura.Nombre) != null)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("NO ES POSIBLE MATERIA YA EXISTENTE!!");
+            Console.ResetColor();
+            return;
+        }
+        else
+        {
         NodoMateria NuevoNodoMateria = new NodoMateria(asignatura); 
 
         NuevoNodoMateria.NodoSigiente = Cabeza;
         Cabeza = NuevoNodoMateria;
+        }
     }
 
 

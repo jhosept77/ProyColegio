@@ -22,8 +22,6 @@ public class Programa
             {
                 case "1":
                 Estudiante nuevo = ServicioEstudiante.CrearEstudiante();
-                
-
                 Colegio.Agregar(nuevo);
                 Console.WriteLine("Estudinate guardado con exito");
                 break;
@@ -55,7 +53,9 @@ public class Programa
                          Console.WriteLine("   MENU PLATAFORMA MATERIAS  ");
                          Console.WriteLine("1. Agregar Materias");
                          Console.WriteLine("2. Modificar Nota ");
-                         Console.WriteLine("6. Salir");
+                         Console.WriteLine("3. Mostrar Materias");
+                         Console.WriteLine("4. Eliminar Materia");
+                         Console.WriteLine("5. Salir");
                          Console.Write("Seleccione una opción: ");
 
                          string opcionMaterias = Console.ReadLine() ??"";
@@ -110,9 +110,51 @@ public class Programa
                             break;
 
 
+                            case "3":
+                            Console.WriteLine("Ingrese ID de estudiante a ver materias");
+                            int IdVerMat = int.Parse(Console.ReadLine()??"0");
+                            Estudiante? BusqEst = Colegio.BuscarEstId(IdVerMat);
+                            BusqEst?.Materias.MostrarMaterias();
+                            break;
 
 
-                            case "6":
+                           case "4":
+                           Console.WriteLine("Ingrese ID de estudiante a Eliminar materia");
+                           int MatElim = int.Parse(Console.ReadLine() ?? "0");
+                           Estudiante? EstMatElim = Colegio.BuscarEstId(MatElim);
+                           if(EstMatElim == null)
+                           {
+                           Console.ForegroundColor = ConsoleColor.Red;
+                           Console.WriteLine("Estudiante no encontrado");
+                           Console.ResetColor();
+                           }
+                           else
+                           {
+                           Console.WriteLine("Materias del estudiante:");
+                           EstMatElim.Materias.MostrarMaterias();
+                           Console.WriteLine("Ingresa el nombre exacto de la materia a ELIMINAR");
+                           string NomMatElim = Console.ReadLine() ?? "";
+                           Materia? matElim = EstMatElim.Materias.BuscarMateria(NomMatElim);
+                           if(matElim == null)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Materia no encontrada");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                EstMatElim.Materias.EliminarMateria(matElim);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("Materia eliminada exitosamente");
+                                Console.ResetColor();
+                            }
+                            }
+                           break;
+
+
+
+
+                            case "5":
                             SubMenuActivo = false;
                             break;
 
@@ -126,6 +168,7 @@ public class Programa
                         }
                     }
                     break;
+                    
                 
 
 
@@ -139,7 +182,10 @@ public class Programa
                 break;
 
             }
+            
        }
+       
 
     }
+    
 }

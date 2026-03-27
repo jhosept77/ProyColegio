@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Dynamic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 public class Estudiante
@@ -31,6 +32,7 @@ public class Estudiante
 
 public class ServicioEstudiante
 {
+    private static int ContadorId = 1;
     public static Estudiante CrearEstudiante()
     {
         Console.WriteLine("Ingrese nombre del estudiante");
@@ -53,12 +55,14 @@ public class ServicioEstudiante
         string direccion = Console.ReadLine() ??"";
 
         Console.WriteLine("Ingrese Celular del estudiante");
-        long celular = long.Parse(Console.ReadLine() ??"");
+        long celular = long.Parse(Console.ReadLine() ??"0");
 
         Console.WriteLine("Ingrese Correo del estudiante");
         string correo = Console.ReadLine() ??"";
-
-        return new Estudiante(nombre,apellido,direccion,celular,correo,0);
+        
+       Estudiante est = new Estudiante(nombre, apellido, direccion, celular, correo, ContadorId);
+       ContadorId++;
+       return est;
     }
 
 
