@@ -90,8 +90,27 @@ public class ListasEnlazadas
             actual = actual.NoSiguiente;
         }
     }
+
+
+        public Estudiante? BuscarEstId(int IdParaBuscar)
+    {
+        Nodo? actual = Cabeza;
+        while(actual != null)
+        {
+            if(actual.Dato.Id == IdParaBuscar)
+            {
+                return(actual.Dato);
+            }
+            actual = actual.NoSiguiente;
+        }
+        return null;
+    }
+
     
 }
+
+
+//----------------------------------------------------------------
 
 
 public class ListasEnlazadasMateria
@@ -107,6 +126,7 @@ public class ListasEnlazadasMateria
 
     public void AgregarMateria(Materia asignatura)
     {
+        
         NodoMateria NuevoNodoMateria = new NodoMateria(asignatura); 
 
         NuevoNodoMateria.NodoSigiente = Cabeza;
@@ -114,7 +134,7 @@ public class ListasEnlazadasMateria
     }
 
 
-    public void ModificarNotaMateria(Materia asignatura, int nuevaNota)
+    public void ModificarNotaMateria(Materia asignatura, double nuevaNota)
     {
         NodoMateria? actual = Cabeza;
         while( actual != null)
@@ -155,7 +175,7 @@ public class ListasEnlazadasMateria
     }
 
 
-    public void MOstrarMatrias()
+    public void MostrarMaterias()
     {
          NodoMateria? actual = Cabeza;
         
@@ -174,6 +194,24 @@ public class ListasEnlazadasMateria
 
         Console.WriteLine("-------------------------------------");
     }
+
+
+
+    public Materia? BuscarMateria(string NombreMateria)
+    {
+        NodoMateria? actual = Cabeza;
+        while(actual != null)
+        {
+            if(actual.Dato.Nombre == NombreMateria)
+            {
+                return(actual.Dato);
+            }
+
+            actual = actual.NodoSigiente;
+        }
+        return null;
+    }
+
 
 }
 

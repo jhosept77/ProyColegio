@@ -13,7 +13,7 @@ public class Programa
         Console.WriteLine("2. Mostrar Todos los estudiantes");
         Console.WriteLine("3. Buscar Estudinate por ID");
         Console.WriteLine("4. Eliminar estudiante");
-        Console.WriteLine("5. Agregar materias a estudinate");
+        Console.WriteLine("5. Materias");
         Console.WriteLine("6. Salir");
         Console.Write("Seleccione una opción: ");
 
@@ -46,6 +46,89 @@ public class Programa
                 Console.WriteLine($"----- Estudiante con Id {IdEliminar} eliminado correctamente ---- ");
                 break;
 
+                case "5":
+
+
+                    bool SubMenuActivo = true;
+                    while (SubMenuActivo)
+                    {
+                         Console.WriteLine("   MENU PLATAFORMA MATERIAS  ");
+                         Console.WriteLine("1. Agregar Materias");
+                         Console.WriteLine("2. Modificar Nota ");
+                         Console.WriteLine("6. Salir");
+                         Console.Write("Seleccione una opción: ");
+
+                         string opcionMaterias = Console.ReadLine() ??"";
+                            switch (opcionMaterias)
+                        {
+                            case "1":
+                            Console.WriteLine("Ingrese iD de estudinate a asignar materias");
+                            int IdBuscarEstObj = int.Parse(Console.ReadLine() ?? "0");
+                            Estudiante? encontrado = Colegio.BuscarEstId(IdBuscarEstObj);
+                            if(encontrado == null)
+                            {
+                            Console.WriteLine("Estudinte No encontrado");
+                            }
+                            else
+                            {
+                            encontrado.Materias.AgregarMateria(ServicioMateria.CrearNuevaMateria());
+                            Console.WriteLine("Materias Del estudiante");
+                            encontrado .Materias.MostrarMaterias();
+                            } 
+                            break;
+
+
+                            case "2":
+                            Console.WriteLine("Ingrese ID de estudiante");
+                            int IdDado = int.Parse(Console.ReadLine() ?? "0");
+                            Estudiante? EstEncontrado = Colegio.BuscarEstId(IdDado);
+                            if(EstEncontrado == null)
+                            {
+                            Console.WriteLine("Estudinte No encontrado");
+                            }
+                            else
+                            {
+                            Console.WriteLine("Materias Del estudiante");
+                            EstEncontrado.Materias.MostrarMaterias();
+                            Console.WriteLine("Ingrese nombre exacto de la materia");
+                            string NombreMat  = Console.ReadLine() ?? "";
+                            Materia? materiaEncontrada = EstEncontrado.Materias.BuscarMateria(NombreMat);
+                            Console.WriteLine("Ingrese Nota a modificar");
+                            double LaNota = double.Parse((Console.ReadLine())??"0");
+                            if(materiaEncontrada == null)
+                            {
+                            Console.WriteLine("Materia no encontrada");
+                            }
+                            else
+                            {
+                            EstEncontrado.Materias.ModificarNotaMateria(materiaEncontrada, LaNota);
+                            Console.WriteLine("Nota asignada exitosamente");
+                            EstEncontrado .Materias.MostrarMaterias();
+
+                            }
+                            } 
+                            break;
+
+
+
+
+                            case "6":
+                            SubMenuActivo = false;
+                            break;
+
+
+                            default:
+                            Console.WriteLine("Opción inválida");
+                            break;
+
+
+
+                        }
+                    }
+                    break;
+                
+
+
                 case "6":
                 Continuar = false;
                 Console.WriteLine("Saliendo del programa");
@@ -58,10 +141,5 @@ public class Programa
             }
        }
 
-
-       ListasEnlazadasMateria Rama = new ListasEnlazadasMateria();
-       bool Continuar = true;
-
-    
     }
 }

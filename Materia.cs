@@ -7,11 +7,31 @@ public class Materia
     public int Id{get; set;}
 
 
-    public Materia(string nombre, double nota, int id)
+    public Materia(string nombre, int id)
     {
         Nombre = nombre;
-        Nota = nota;
+        Nota = 0;
         Id = id;
     }
 
+
+}
+
+
+
+public class ServicioMateria
+{
+
+    private static int ContadorId = 1;
+        public static Materia CrearNuevaMateria()
+    {
+        Console.WriteLine("Ingrese Nombre de materia a resgistrar");
+        string Nombre = Console.ReadLine() ?? "";
+
+
+        Materia materia= new Materia(Nombre, ContadorId);
+        ContadorId++;
+        return materia;
+
+    }
 }
