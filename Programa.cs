@@ -32,14 +32,26 @@ public class Programa
 
                 case "3":
                 Console.WriteLine("Ingrese ID a buscar");
-                int IdaBuscar = int.Parse(Console.ReadLine() ?? "0");
+                int IdaBuscar;
+                while(!int.TryParse(Console.ReadLine(), out IdaBuscar))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("¡¡¡¡¡ ID INVALIDO INTENTE DE NUEVO !!!!!");
+                        Console.ResetColor();
+                    }
                 Console.WriteLine($"El estudiante {IdaBuscar} es:");
                 Colegio.BuscarPorId(IdaBuscar);
                 break;
                 
                 case "4":
                 Console.WriteLine("Ingrese ID de alumno a eliminar");
-                int IdEliminar = int.Parse(Console.ReadLine() ?? "0");
+                int IdEliminar;
+                while(!int.TryParse(Console.ReadLine(), out IdEliminar))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("¡¡¡¡¡ ID INVALIDO INTENTE DE NUEVO !!!!!");
+                        Console.ResetColor();
+                    }
                 Colegio.EliminarAlumno(IdEliminar);
                 Console.WriteLine($"----- Estudiante con Id {IdEliminar} eliminado correctamente ---- ");
                 break;
@@ -63,19 +75,30 @@ public class Programa
                         {
                             case "1":
                             Console.WriteLine("Ingrese iD de estudinate a asignar materias");
-                            int IdBuscarEstObj = int.Parse(Console.ReadLine() ?? "0");
+                            int IdBuscarEstObj;
+                            while (!int.TryParse(Console.ReadLine(), out IdBuscarEstObj))
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("¡¡¡¡¡ ID INVALIDO INTENTE DE NUEVO !!!!!");
+                                    Console.ResetColor();
+                                }
+
                             Estudiante? encontrado = Colegio.BuscarEstId(IdBuscarEstObj);
                             if(encontrado == null)
-                            {
-                            Console.WriteLine("Estudinte No encontrado");
-                            }
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Estudinte No encontrado");
+                                    Console.ResetColor();
+                                }
                             else
-                            {
-                            encontrado.Materias.AgregarMateria(ServicioMateria.CrearNuevaMateria());
-                            Console.WriteLine("Materias Del estudiante");
-                            encontrado .Materias.MostrarMaterias();
-                            } 
+                                {
+                                    encontrado.Materias.AgregarMateria(ServicioMateria.CrearNuevaMateria());
+                                    Console.WriteLine("Materias Del estudiante");
+                                    encontrado .Materias.MostrarMaterias();
+                                } 
                             break;
+
+
 
 
                             case "2":
@@ -83,71 +106,87 @@ public class Programa
                             int IdDado = int.Parse(Console.ReadLine() ?? "0");
                             Estudiante? EstEncontrado = Colegio.BuscarEstId(IdDado);
                             if(EstEncontrado == null)
-                            {
-                            Console.WriteLine("Estudinte No encontrado");
-                            }
+                                {
+                                Console.WriteLine("Estudinte No encontrado");
+                                }
                             else
-                            {
-                            Console.WriteLine("Materias Del estudiante");
-                            EstEncontrado.Materias.MostrarMaterias();
-                            Console.WriteLine("Ingrese nombre exacto de la materia");
+                                {
+                                Console.WriteLine("Materias Del estudiante");
+                                EstEncontrado.Materias.MostrarMaterias();
+                                Console.WriteLine("Ingrese nombre exacto de la materia");
                             string NombreMat  = Console.ReadLine() ?? "";
                             Materia? materiaEncontrada = EstEncontrado.Materias.BuscarMateria(NombreMat);
                             Console.WriteLine("Ingrese Nota a modificar");
                             double LaNota = double.Parse((Console.ReadLine())??"0");
                             if(materiaEncontrada == null)
-                            {
-                            Console.WriteLine("Materia no encontrada");
-                            }
+                                {
+                                Console.WriteLine("MATERIA NO ENCONTRADA !!");
+                                }
                             else
-                            {
+                                {
                             EstEncontrado.Materias.ModificarNotaMateria(materiaEncontrada, LaNota);
                             Console.WriteLine("Nota asignada exitosamente");
                             EstEncontrado .Materias.MostrarMaterias();
 
-                            }
+                                }
                             } 
                             break;
 
 
+
+
                             case "3":
                             Console.WriteLine("Ingrese ID de estudiante a ver materias");
-                            int IdVerMat = int.Parse(Console.ReadLine()??"0");
+                            int IdVerMat;
+                            while(!int.TryParse(Console.ReadLine(), out IdVerMat))
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("¡¡¡¡¡ ID INVALIDO INTENTE DE NUEVO !!!!!");
+                                    Console.ResetColor();
+                                }
                             Estudiante? BusqEst = Colegio.BuscarEstId(IdVerMat);
                             BusqEst?.Materias.MostrarMaterias();
                             break;
 
 
+
+
                            case "4":
                            Console.WriteLine("Ingrese ID de estudiante a Eliminar materia");
-                           int MatElim = int.Parse(Console.ReadLine() ?? "0");
-                           Estudiante? EstMatElim = Colegio.BuscarEstId(MatElim);
-                           if(EstMatElim == null)
-                           {
-                           Console.ForegroundColor = ConsoleColor.Red;
-                           Console.WriteLine("Estudiante no encontrado");
-                           Console.ResetColor();
-                           }
+                           int MatElim;
+                           while(!int.TryParse(Console.ReadLine(), out MatElim))
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("¡¡¡¡¡ ID INVALIDO INTENTE DE NUEVO !!!!!");
+                                    Console.ResetColor();
+                                }
+                                Estudiante? EstMatElim = Colegio.BuscarEstId(MatElim);
+                                if(EstMatElim == null)
+                                {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("ESTUDINATE NO ENCONTRADO");
+                                Console.ResetColor();
+                                }
                            else
-                           {
+                                {
                            Console.WriteLine("Materias del estudiante:");
                            EstMatElim.Materias.MostrarMaterias();
                            Console.WriteLine("Ingresa el nombre exacto de la materia a ELIMINAR");
                            string NomMatElim = Console.ReadLine() ?? "";
                            Materia? matElim = EstMatElim.Materias.BuscarMateria(NomMatElim);
                            if(matElim == null)
-                            {
+                                {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Materia no encontrada");
+                                Console.WriteLine("MATERIA NO ENCONTRADA !!!!");
                                 Console.ResetColor();
-                            }
+                                }
                             else
-                            {
+                                {
                                 EstMatElim.Materias.EliminarMateria(matElim);
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("Materia eliminada exitosamente");
                                 Console.ResetColor();
-                            }
+                                }
                             }
                            break;
 
@@ -160,7 +199,9 @@ public class Programa
 
 
                             default:
-                            Console.WriteLine("Opción inválida");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("OPCION INVALIDA");
+                            Console.ResetColor();
                             break;
 
 
@@ -178,8 +219,11 @@ public class Programa
                 break;
 
                 default:
-                Console.WriteLine("Valor invalido");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("OPCION INVALIDA");
+                Console.ResetColor();
                 break;
+
 
             }
             
